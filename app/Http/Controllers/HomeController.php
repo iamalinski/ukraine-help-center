@@ -15,11 +15,13 @@ class HomeController extends Controller
         return view('index', ['activities' => $activities]);
     }
 
-    function checkHistory($person_passport_number)
+    function checkHistory($person_passport_number, $activities)
     {
-        $history = Import::orderBy('created_at', 'DESC')->where('person_passport_number', $person_passport_number)->where('created_at', '>', now()->subDays(7)->endOfDay())->get();
+        // dd($activities);
+        $history        = Import::orderBy('created_at', 'DESC')->where('person_passport_number', $person_passport_number)->where('created_at', '>', now()->subDays(7)->endOfDay())->get();
+        $finalHistory   = Import::orderBy('created_at', 'DESC')->where('person_passport_number', $person_passport_number)->whereIn('activity_id', $activities)->where('created_at', '>', now()->subDays(7)->endOfDay())->get();
 
-        if ($history->count()) {
+        if ($finalHistory->count()) {
             return $history;
         } else {
             return false;
@@ -28,27 +30,26 @@ class HomeController extends Controller
 
     function add(Request $request)
     {
-        $data                               = [];
+        $data                                       = [];
         $request->validate([
-            'person_name'                       => 'required|max:191|min:3',
-            'person_passport_number'            => 'required|max:191|min:3',
-            'activities'                        => 'required|array'
+            'person_name'                           => 'required|max:191|min:3',
+            'person_passport_number'                => 'required|max:191|min:3',
+            'activities'                            => 'required|array'
         ]);
 
-        $check = $this->checkHistory($request['person_passport_number']);
+        $check                                      = $this->checkHistory($request['person_passport_number'], $request['activities']);
 
         if ($check) {
-            $date = date('d.m.Y', strtotime($check[0]->created_at)) . ' г.';
-            $stocks = '';
+            $stocks                                 = '';
 
             foreach ($check as $key => $c) {
-                $activities = Activity::orderBy('created_at', 'DESC')->where('id', $c->activity_id)->get();
+                $activities                         = Activity::orderBy('created_at', 'DESC')->where('id', $c->activity_id)->get();
                 foreach ($activities as $a) {
-                    $stocks .= ($key == 0 ? '' : ', ') . $a->name;
+                    $stocks                         .= ($key == 0 ? ' (' : ', (') . $a->name . ' на: ' . date('d.m.Y', strtotime($c->created_at)) . ' г.' . ')';                       
                 }
             }
-            $data['status']                     = 'error';
-            $data['message']                    = 'Лицето "' . $request['person_name'] . '" с паспорт №: ' . $request['person_passport_number'] . ' е получило помощ изразена в: ' . $stocks . ' на дата: ' . $date;
+            $data['status']                         = 'error';
+            $data['message']                        = 'Лицето "' . $request['person_name'] . '" с паспорт №: ' . $request['person_passport_number'] . ' е получило помощ изразена в: ' . $stocks;
         } else {
             foreach ($request['activities'] as $a) {
                 $activity                           = new Import();
@@ -58,8 +59,8 @@ class HomeController extends Controller
                 $activity->save();
             }
 
-            $data['status']                     = 'success';
-            $data['message']                    = 'Записът беше успешен!';
+            $data['status']                         = 'success';
+            $data['message']                        = 'Записът беше успешен!';
         }
 
         return view('result', ['data' => $data]);
