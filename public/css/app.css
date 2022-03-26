@@ -1,0 +1,246 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  outline: none;
+  text-decoration: none;
+  font-family: "Roboto Regular", sans-serif;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  height: 40px;
+  background-color: #f8f8f8;
+  border: 1px solid #e9e9e9;
+  border-radius: 2px;
+  padding: 0 10px;
+  background-repeat: no-repeat;
+}
+input:disabled,
+select:disabled,
+textarea:disabled {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+input[type=number] {
+  width: 80px;
+}
+
+input[type=search] {
+  padding-left: 45px;
+  padding-right: 20px;
+}
+
+textarea {
+  resize: none;
+  padding: 10px;
+  height: 130px;
+  width: 100%;
+}
+
+label {
+  color: #8e8e8e;
+  font-family: "Roboto Light", sans-serif;
+  font-size: 13px;
+  padding-bottom: 5px;
+  padding-right: 10px;
+}
+label span {
+  color: #e470a4;
+}
+
+.btn-create,
+.btn-cancel {
+  border: 1px solid #cba689;
+  color: white;
+  background-color: #cba689;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3px;
+  cursor: pointer;
+  background-repeat: no-repeat;
+  padding: 0 5px;
+  height: 45px;
+  min-width: 147px;
+  transition: 0.2s;
+  flex-shrink: 0;
+}
+.btn-create.disabled,
+.btn-cancel.disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.btn-create:hover {
+  background-color: #c09a7d;
+}
+
+.btn-cancel {
+  border: 1px solid #898fa6;
+  background-color: transparent;
+  color: #898fa6;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-right: 15px;
+}
+.col:last-of-type {
+  margin-right: 0;
+}
+
+.checkbox-col-aligned {
+  margin: auto 0;
+  padding-top: 15px;
+}
+
+.row {
+  display: flex;
+  margin-bottom: 15px;
+}
+.row:last-of-type {
+  margin-bottom: 0;
+}
+
+.validate {
+  border: 1px solid #e470a4 !important;
+}
+
+ul.errors {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 40px;
+}
+ul.errors li {
+  font-size: 13px;
+  color: #e470a4;
+  margin-bottom: 5px;
+  text-align: center;
+}
+ul.errors li:last-of-type {
+  margin-bottom: 0;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 13px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkmark {
+  position: absolute;
+  top: -4px;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+}
+
+.container:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+.container input:checked ~ .checkmark {
+  background-color: #2196f3;
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.container .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+}
+
+.options {
+  flex-wrap: wrap;
+  margin-top: 40px;
+}
+.options .col {
+  width: calc(33.3333333333% - 15px);
+  margin-bottom: 10px;
+}
+
+hr {
+  height: 1px;
+  border: none;
+  background-color: #afafaf;
+  margin: 40px 0;
+}
+
+main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+main form {
+  max-width: 700px;
+  margin: auto;
+}
+main form #passport_number {
+  max-width: 300px;
+}
+main form hr {
+  margin-top: 30px;
+}
+main form button.btn-create {
+  margin: 0 auto;
+}
+main#result {
+  max-width: 700px;
+  margin: auto;
+}
+main#result .error h2 {
+  color: #cd1f37;
+}
+main#result .success h2 {
+  color: #389B6E;
+}
+main#result h2 {
+  font-size: 18px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+main#result a.btn-cancel {
+  margin: 0 auto;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
