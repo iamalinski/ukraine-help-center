@@ -15,4 +15,4 @@ use App\Http\Controllers\HomeController;
 */
 
 Route::get('/', [HomeController::class, 'index']);
-Route::post('/add', [HomeController::class, 'add']);
+Route::any('/add', [HomeController::class, 'add']);
