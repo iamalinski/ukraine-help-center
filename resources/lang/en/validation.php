@@ -85,7 +85,7 @@ return [
     'max' => [
         'numeric' => 'The :attribute must not be greater than :max.',
         'file' => 'The :attribute must not be greater than :max kilobytes.',
-        'string' => 'The :attribute must not be greater than :max characters.',
+        'string' => 'Полето :attribute не може да е по-дълго от :max символа.',
         'array' => 'The :attribute must not have more than :max items.',
     ],
     'mimes' => 'The :attribute must be a file of type: :values.',
@@ -160,6 +160,7 @@ return [
         'person_name' => 'ТРИ ИМЕНА',
         'person_passport_number' => 'ПАСПОРТ №',
         'activities' => 'ВИД ПОМОЩ',
+        'description' => 'КОМЕНТАР',
     ],
 
 ];

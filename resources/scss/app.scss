@@ -8,6 +8,18 @@
     font-family: "Roboto Regular", sans-serif;
 }
 
+@font-face {
+    font-family: "Roboto Light";
+    font-display: swap;
+    src: url("../fonts/Roboto/Roboto-Light.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Roboto Regular";
+    font-display: swap;
+    src: url("../fonts/Roboto/Roboto-Regular.ttf") format("truetype");
+}
+
 input,
 select,
 textarea {
@@ -53,14 +65,14 @@ label {
 
 .btn-create,
 .btn-cancel {
-    border: 1px solid #cba689;
     color: white;
-    background-color: #cba689;
+    border: none;
+    background-color: #3f51b5;
     font-size: 13px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 3px;
+    border-radius: 1px;
     cursor: pointer;
     background-repeat: no-repeat;
     padding: 0 5px;
@@ -75,7 +87,7 @@ label {
 }
 
 .btn-create:hover {
-    background-color: #c09a7d;
+    background-color: #3a4aa3;
 }
 
 .btn-cancel {
@@ -118,7 +130,7 @@ ul.errors {
         color: #e470a4;
         margin-bottom: 5px;
         text-align: center;
-        &:last-of-type{
+        &:last-of-type {
             margin-bottom: 0;
         }
     }
@@ -206,9 +218,19 @@ main {
     align-items: center;
     justify-content: center;
     min-height: 100vh;
+    padding: 40px 0;
     form {
         max-width: 700px;
         margin: auto;
+        h1 {
+            text-align: center;
+            font-size: 25px;
+            color: #2c2c2c;
+            margin-bottom: 40px;
+            font-family: "Roboto Light", sans-serif;
+            font-weight: 100;
+            text-transform: uppercase;
+        }
         #passport_number {
             max-width: 300px;
         }
@@ -219,25 +241,25 @@ main {
             margin: 0 auto;
         }
     }
-    &#result{
+    &#result {
         max-width: 700px;
         margin: auto;
-        .error{
-            h2{
+        .error {
+            h2 {
                 color: #cd1f37;
             }
         }
-        .success{
-            h2{
-                color: #389B6E;
+        .success {
+            h2 {
+                color: #389b6e;
             }
         }
-        h2{
+        h2 {
             font-size: 18px;
             text-align: center;
             margin-bottom: 20px;
         }
-        a.btn-cancel{
+        a.btn-cancel {
             margin: 0 auto;
             width: fit-content;
         }

@@ -16,12 +16,14 @@ class HomeController extends Controller
 
     function checkAvailability($request)
     {
-        $ip_address   = $request->ip();
-        if (in_array($ip_address, $this->whitelist_ip_addresses)) {
-            return true;
-        } else {
-            return false;
-        }
+        // $ip_address   = $request->ip();
+        // if (in_array($ip_address, $this->whitelist_ip_addresses)) {
+        //     return true;
+        // } else {
+        //     return false;
+        // }
+
+        return true;
     }
 
     function index(Request $request)
@@ -35,8 +37,8 @@ class HomeController extends Controller
 
     function checkHistory($person_passport_number, $activities)
     {
-        $history        = $this->import::orderBy('created_at', 'DESC')->where('person_passport_number', $person_passport_number)->where('created_at', '>', now()->subDays(7)->endOfDay())->get();
-        $final_history   = $this->import::orderBy('created_at', 'DESC')->where('person_passport_number', $person_passport_number)->whereIn('activity_id', $activities)->where('created_at', '>', now()->subDays(7)->endOfDay())->get();
+        $history          = $this->import::orderBy('created_at', 'DESC')->where('person_passport_number', $person_passport_number)->where('created_at', '>', now()->subDays(7)->endOfDay())->get();
+        $final_history    = $this->import::orderBy('created_at', 'DESC')->where('person_passport_number', $person_passport_number)->whereIn('activity_id', $activities)->where('created_at', '>', now()->subDays(7)->endOfDay())->get();
 
         if ($final_history->count()) {
             return $history;
@@ -55,7 +57,8 @@ class HomeController extends Controller
         $request->validate([
             'person_name'                           => 'required|max:191|min:3',
             'person_passport_number'                => 'required|max:191|min:3',
-            'activities'                            => 'required|array'
+            'activities'                            => 'required|array',
+            'description'                           => 'max:1000'
         ]);
 
         $check                                        = $this->checkHistory($request['person_passport_number'], $request['activities']);
@@ -77,6 +80,7 @@ class HomeController extends Controller
                 $activity->person_name                = $request['person_name'];
                 $activity->person_passport_number     = $request['person_passport_number'];
                 $activity->activity_id                = $a;
+                $activity->description                = $request['description'];
                 $activity->save();
             }
 

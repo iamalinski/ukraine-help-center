@@ -8,6 +8,16 @@
   font-family: "Roboto Regular", sans-serif;
 }
 
+@font-face {
+  font-family: "Roboto Light";
+  font-display: swap;
+  src: url("../fonts/Roboto/Roboto-Light.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Roboto Regular";
+  font-display: swap;
+  src: url("../fonts/Roboto/Roboto-Regular.ttf") format("truetype");
+}
 input,
 select,
 textarea {
@@ -55,14 +65,14 @@ label span {
 
 .btn-create,
 .btn-cancel {
-  border: 1px solid #cba689;
   color: white;
-  background-color: #cba689;
+  border: none;
+  background-color: #3f51b5;
   font-size: 13px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 3px;
+  border-radius: 1px;
   cursor: pointer;
   background-repeat: no-repeat;
   padding: 0 5px;
@@ -78,7 +88,7 @@ label span {
 }
 
 .btn-create:hover {
-  background-color: #c09a7d;
+  background-color: #3a4aa3;
 }
 
 .btn-cancel {
@@ -209,10 +219,20 @@ main {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
+  padding: 40px 0;
 }
 main form {
   max-width: 700px;
   margin: auto;
+}
+main form h1 {
+  text-align: center;
+  font-size: 25px;
+  color: #2c2c2c;
+  margin-bottom: 40px;
+  font-family: "Roboto Light", sans-serif;
+  font-weight: 100;
+  text-transform: uppercase;
 }
 main form #passport_number {
   max-width: 300px;
@@ -231,7 +251,7 @@ main#result .error h2 {
   color: #cd1f37;
 }
 main#result .success h2 {
-  color: #389B6E;
+  color: #389b6e;
 }
 main#result h2 {
   font-size: 18px;

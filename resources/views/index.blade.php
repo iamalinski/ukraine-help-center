@@ -3,31 +3,41 @@
 <main>
     <form action="{{ URL::to('/add') }}" method="POST">
         @CSRF
+        <h1>
+            Регистрация на помощи
+        </h1>
         <div class="row">
             <div class="col" title="Кликнете върху полето и въведете трите имена на лицето.">
                 <label for="person_name">
-                    Три имена
+                    Три имена*
                 </label>
                 <input type="text" name="person_name" id="person_name" autofocus value="{{ old('person_name') }}" class="{{ $errors->has('person_name') ? 'validate' : '' }}">
             </div>
             <div class="col" title="Кликнете върху полето и въведете паспортният номер на лицето. ">
                 <label for="person_passport_number">
-                    Паспорт №
+                    Паспорт №*
                 </label>
                 <input type="text" name="person_passport_number" id="person_passport_number" value="{{ old('person_passport_number') }}" class="{{ $errors->has('person_passport_number') ? 'validate' : '' }}">
             </div>
         </div>
         <div class="options row">
-
             @foreach($activities as $key=>$activity)
             <div class="col" title="Кликнете върху кутийката, за да изберете вид помощ - {{ $activity->name }}">
                 <label class="container">
                     {{ $activity->name }}
-                    <input type="checkbox" name="activities[]" value="{{ $activity->id }}" @if(old('activities')){{  in_array( $activity->id, old('activities')) ? 'checked' : '' }}@endif  class="{{ $errors->has('activities') ? 'validate' : '' }}">
+                    <input type="checkbox" name="activities[]" value="{{ $activity->id }}" @if(old('activities')){{  in_array( $activity->id, old('activities')) ? 'checked' : '' }}@endif class="{{ $errors->has('activities') ? 'validate' : '' }}">
                     <span class="checkmark"></span>
                 </label>
             </div>
             @endforeach
+        </div>
+        <div class="row">
+            <div class="col">
+                <label for="description">
+                    Коментар
+                </label>
+                <textarea name="description" id="description" class="{{ $errors->has('description') ? 'validate' : '' }}">{{ old('description') }}</textarea>
+            </div>
         </div>
         <hr />
         @if ($errors->any())
