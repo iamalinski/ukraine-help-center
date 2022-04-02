@@ -20,6 +20,19 @@
     src: url("../fonts/Roboto/Roboto-Regular.ttf") format("truetype");
 }
 
+@font-face {
+    font-family: "Roboto Medium";
+    font-display: swap;
+    src: url("../fonts/Roboto/Roboto-Medium.ttf") format("truetype");
+}
+
+.no-data{
+    text-align: center;
+    margin: 40px 0;
+    color: #2c2c2c;
+    font-size: 15px;
+}
+
 input,
 select,
 textarea {
@@ -46,6 +59,7 @@ input[type="search"] {
     padding-left: 45px;
     padding-right: 20px;
 }
+
 textarea {
     resize: none;
     padding: 10px;
@@ -223,16 +237,93 @@ main {
         max-width: 700px;
         margin: auto;
         h1 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
+            margin-bottom: 40px;
             font-size: 25px;
             color: #2c2c2c;
-            margin-bottom: 40px;
             font-family: "Roboto Light", sans-serif;
             font-weight: 100;
             text-transform: uppercase;
+            span{
+                padding: 0 10px;
+                font-size: inherit;
+                color: inherit;
+                font-family: inherit;
+                font-weight: inherit;
+                text-transform: inherit;
+            }
+            a{
+                font-size: inherit;
+                color: inherit;
+                font-family: inherit;
+                font-weight: inherit;
+                text-transform: inherit;
+                &.active{
+                    text-decoration: underline;
+                    pointer-events: none;
+                }
+                &:hover{
+                    text-decoration: underline;
+                }
+            }
         }
         #passport_number {
             max-width: 300px;
+        }
+        h2{
+            font-size: 18px;
+            margin-bottom: 20px;
+            margin-top: 40px;
+            font-family: 'Roboto Medium', sans-serif;
+            color: #2c2c2c;
+            font-weight: normal;
+        }
+        table{
+            width: 100%;
+            border: none;
+            tr{
+                th{
+                    border-bottom: 1px solid #2c2c2c;
+                    text-align: left;
+                    font-weight: normal;
+                    color: #2c2c2c;
+                    padding: 10px;
+                    font-size: 15px;
+                }
+                td{
+                    text-align: left;
+                    font-weight: normal;
+                    color: #2c2c2c;
+                    padding: 10px; 
+                    font-size: 15px; 
+                }
+                &:nth-child(odd){
+                    td{
+                        background-color: rgb(241, 241, 241);
+                    }
+                }
+            }
+        }
+        ul.main-statistics{
+            margin-top: 20px;
+            li{
+                padding: 10px;
+                color: #2c2c2c;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                font-size: 15px;
+                span{
+                    padding-left: 10px;
+                    font-family: 'Roboto Medium', sans-serif;
+                }
+                &:nth-child(2n){
+                    background-color: rgb(241, 241, 241);
+                }
+            }
         }
         hr {
             margin-top: 30px;

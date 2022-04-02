@@ -18,6 +18,18 @@
   font-display: swap;
   src: url("../fonts/Roboto/Roboto-Regular.ttf") format("truetype");
 }
+@font-face {
+  font-family: "Roboto Medium";
+  font-display: swap;
+  src: url("../fonts/Roboto/Roboto-Medium.ttf") format("truetype");
+}
+.no-data {
+  text-align: center;
+  margin: 40px 0;
+  color: #2c2c2c;
+  font-size: 15px;
+}
+
 input,
 select,
 textarea {
@@ -226,16 +238,89 @@ main form {
   margin: auto;
 }
 main form h1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
+  margin-bottom: 40px;
   font-size: 25px;
   color: #2c2c2c;
-  margin-bottom: 40px;
   font-family: "Roboto Light", sans-serif;
   font-weight: 100;
   text-transform: uppercase;
 }
+main form h1 span {
+  padding: 0 10px;
+  font-size: inherit;
+  color: inherit;
+  font-family: inherit;
+  font-weight: inherit;
+  text-transform: inherit;
+}
+main form h1 a {
+  font-size: inherit;
+  color: inherit;
+  font-family: inherit;
+  font-weight: inherit;
+  text-transform: inherit;
+}
+main form h1 a.active {
+  text-decoration: underline;
+  pointer-events: none;
+}
+main form h1 a:hover {
+  text-decoration: underline;
+}
 main form #passport_number {
   max-width: 300px;
+}
+main form h2 {
+  font-size: 18px;
+  margin-bottom: 20px;
+  margin-top: 40px;
+  font-family: "Roboto Medium", sans-serif;
+  color: #2c2c2c;
+  font-weight: normal;
+}
+main form table {
+  width: 100%;
+  border: none;
+}
+main form table tr th {
+  border-bottom: 1px solid #2c2c2c;
+  text-align: left;
+  font-weight: normal;
+  color: #2c2c2c;
+  padding: 10px;
+  font-size: 15px;
+}
+main form table tr td {
+  text-align: left;
+  font-weight: normal;
+  color: #2c2c2c;
+  padding: 10px;
+  font-size: 15px;
+}
+main form table tr:nth-child(odd) td {
+  background-color: #f1f1f1;
+}
+main form ul.main-statistics {
+  margin-top: 20px;
+}
+main form ul.main-statistics li {
+  padding: 10px;
+  color: #2c2c2c;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 15px;
+}
+main form ul.main-statistics li span {
+  padding-left: 10px;
+  font-family: "Roboto Medium", sans-serif;
+}
+main form ul.main-statistics li:nth-child(2n) {
+  background-color: #f1f1f1;
 }
 main form hr {
   margin-top: 30px;

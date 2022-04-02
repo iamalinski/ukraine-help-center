@@ -4,7 +4,15 @@
     <form action="{{ URL::to('/add') }}" method="POST">
         @CSRF
         <h1>
-            Регистрация на помощи
+            <a href="{{ URL::to('/') }}" class="active">
+                Регистрация на помощи
+            </a>
+            <span>
+                /
+            </span>
+            <a href="{{ URL::to('/statistics') }}" title="Към връзката">
+                Справки
+            </a>
         </h1>
         <div class="row">
             <div class="col" title="Кликнете върху полето и въведете трите имена на лицето.">

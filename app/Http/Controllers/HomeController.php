@@ -28,19 +28,21 @@ class HomeController extends Controller
 
     function index(Request $request)
     {
-        if(!$this->checkAvailability($request)){
+        if (!$this->checkAvailability($request)) {
             return view('failed');
         }
         $activities = Activity::orderBy('created_at', 'DESC')->get();
+
         return view('index', ['activities' => $activities]);
     }
 
     function checkHistory($person_passport_number, $activities)
     {
-        $history          = $this->import::orderBy('created_at', 'DESC')->where('person_passport_number', $person_passport_number)->where('created_at', '>', now()->subDays(7)->endOfDay())->get();
-        $final_history    = $this->import::orderBy('created_at', 'DESC')->where('person_passport_number', $person_passport_number)->whereIn('activity_id', $activities)->where('created_at', '>', now()->subDays(7)->endOfDay())->get();
+        $final_history_count    = $this->import::orderBy('created_at', 'DESC')->where('person_passport_number', $person_passport_number)->whereIn('activity_id', $activities)->where('created_at', '>', now()->subDays(7)->endOfDay())->count();
 
-        if ($final_history->count()) {
+        if ($final_history_count) {
+            $history            = $this->import::orderBy('created_at', 'DESC')->where('person_passport_number', $person_passport_number)->where('created_at', '>', now()->subDays(7)->endOfDay())->get();
+
             return $history;
         } else {
             return false;
@@ -49,7 +51,7 @@ class HomeController extends Controller
 
     function add(Request $request)
     {
-        if(!$this->checkAvailability($request)){
+        if (!$this->checkAvailability($request)) {
             return view('failed');
         }
 
@@ -62,12 +64,13 @@ class HomeController extends Controller
         ]);
 
         $check                                        = $this->checkHistory($request['person_passport_number'], $request['activities']);
-
+  
         if ($check) {
             $stocks                                   = '';
 
             foreach ($check as $key => $c) {
                 $activities                           = Activity::orderBy('created_at', 'DESC')->where('id', $c->activity_id)->get();
+
                 foreach ($activities as $a) {
                     $stocks                          .= ($key == 0 ? ' (' : ', (') . $a->name . ' на: ' . date('d.m.Y', strtotime($c->created_at)) . ' г.' . ')';
                 }
